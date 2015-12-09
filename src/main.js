@@ -4,7 +4,7 @@ var menu = require('./menu.js');
 var path = require('path');
 var settings = require('./settings.js');
 
-settings.load();
+settings.load(app.getAppPath(), app.getPath('userData'));
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -62,7 +62,7 @@ app.on('ready', function() {
       settings.set('window:width', bounds.width);
       settings.set('window:height', bounds.height);
     }
-    settings.saveState();
+    settings.saveState(app.getPath('userData'));
 
     if (process.platform != 'darwin') { return; }
     if (quitting) { return; }
